@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+}
+
+.daily-container {
+  height: 40vmin;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.daily-content {
+  background-color: rgb(31, 31, 31);
+  padding: 50px;
+  border-radius: 45px;
+}
+
+.search-field {
+ display: flex;
+}
+
+.daily-information {
+  padding-top: 10px;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}

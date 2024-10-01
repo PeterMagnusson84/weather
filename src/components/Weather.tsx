@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { TodayWeatherData } from "../interfaces/ITodayWeatherData";
+import "../styled/dailyWeather.css"
 
 const Weather = () => {
 
@@ -49,22 +50,27 @@ const Weather = () => {
   };
   
   return (
-    <div>
-      <div>
-        <input type='text' placeholder='Search' onChange={handleInputChange} value={city}/>
-        <img src="" alt="" />
+    <div className='daily-container'>
+      <div className='daily-content'>
+        <div className='search-field'>
+          <div>
+            <input type='text' placeholder='Search' onChange={handleInputChange} value={city}/>
+            <img src="" alt="" />
+          </div>
+          <div>
+          <button onClick={handleSearch}>Search</button>
+          </div>
+        </div>
+        <div className='daily-information'>
+          <div>Weather infromation</div>
+          <div>{weatherData?.temprature}</div>
+          <div>{weatherData?.icon}</div>
+          <div>{weatherData?.description}</div>
+          <div>{weatherData?.humidity}</div>
+          <div>{weatherData?.city}</div>
+          <div>{weatherData?.country}</div> 
+        </div>
       </div>
-      <div>
-      <button onClick={handleSearch}>Search</button>
-      </div>
-      <div>Weather infromation</div>
-      <div>{weatherData?.temprature}</div>
-      <div>{weatherData?.icon}</div>
-      <div>{weatherData?.description}</div>
-      <div>{weatherData?.humidity}</div>
-      <div>{weatherData?.city}</div>
-      <div>{weatherData?.country}</div>
-      
     </div>
   )
 }
