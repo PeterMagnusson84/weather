@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { TodayWeatherData } from "../interfaces/ITodayWeatherData";
 import "../styled/dailyWeather.css";
-import Weather from "./Weather";
+import DailyWeather from "./DailyWeather";
+import searchSolid from "../icons/searchIcon.svg"; 
 
 const Search = () => {
 
   // const [count, setCount] = useState(0);
   const [city, setCity] = useState("");
   const [triggerSearch, setTriggerSearch] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const [weatherData, setWeatherData] = useState<TodayWeatherData | null>(null);
 
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -48,28 +50,24 @@ const Search = () => {
 
   const handleSearch = () => {
     setTriggerSearch(true);
+    setShowSearch(true);
   };
   
   return (
     <div>
       <div className='search-field'>
-        <div>
-          <input type='text' placeholder='Search' onChange={handleInputChange} value={city}/>
-          <img src="" alt="" />
-        </div>
-        <div>
-        <button onClick={handleSearch}>Search</button>
-        </div>
+        <input className='search-input' type='text' placeholder='Search' onChange={handleInputChange} value={city}/>
+        <img className='search-icon' src={searchSolid} alt="" onClick={handleSearch} />
       </div>
-        <Weather 
-          city={weatherData?.city} 
-          country={weatherData?.country} 
-          description={weatherData?.description}
-          humidity={weatherData?.humidity}
-          icon={weatherData?.icon}
-          temprature={weatherData?.temprature}
-          windSpeed={weatherData?.windSpeed}
-        />
+      {showSearch && <DailyWeather 
+        city={weatherData?.city} 
+        country={weatherData?.country} 
+        description={weatherData?.description}
+        humidity={weatherData?.humidity}
+        icon={weatherData?.icon}
+        temprature={weatherData?.temprature}
+        windSpeed={weatherData?.windSpeed}
+      />}
     </div>
   )
 }

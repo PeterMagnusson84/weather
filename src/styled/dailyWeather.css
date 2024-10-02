@@ -16,7 +16,23 @@
 }
 
 .search-field {
- display: flex;
+  display: flex;
+  height: 25px;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.search-input {
+  background-color: black;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    padding: 20px;
+}
+
+.search-icon {
+  margin-bottom: -12px;
+  padding-top: 5px;
 }
 
 .daily-information {

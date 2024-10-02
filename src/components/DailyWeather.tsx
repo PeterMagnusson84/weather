@@ -2,7 +2,7 @@ import React from 'react'
 import "../styled/dailyWeather.css"
 import { TodayWeatherData } from "../interfaces/ITodayWeatherData";
 
-const Weather = (props: TodayWeatherData) => {
+const DailyWeather = (props: TodayWeatherData) => {
   
   return (
     <div className='daily-container'>
@@ -19,4 +19,4 @@ const Weather = (props: TodayWeatherData) => {
   )
 }
 
-export default Weather
+export default DailyWeather
