@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { TodayWeatherData } from "../interfaces/ITodayWeatherData";
 import "../styled/dailyWeather.css";
 import DailyWeather from "./DailyWeather";
-import searchSolid from "../icons/searchIcon.svg"; 
+import searchIcon from "../icons/searchIcon.svg";
+import cloud from "../icons/cloud.svg";
+import sun from "../icons/sun.svg";
+import sunCloud from "../icons/sunCloud.svg";
+import lightRain from "../icons/lightRain.svg";
+import heavyRain from "../icons/heavyRain.svg";
 
 const Search = () => {
 
@@ -14,6 +19,19 @@ const Search = () => {
 
   const apiKey = process.env.REACT_APP_API_KEY;
 
+  const weatherIcons: { [key: string]: string } = {
+    "01d": sun,
+    "02d": cloud,
+    "03d": sunCloud,
+    "04d": sunCloud,
+    "05d": "",
+    "06d": "",
+    "07d": "",
+    "08d": "",
+    "09d": heavyRain,
+    "10d": lightRain
+  }
+
   
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const search = async (city: any)=>{
@@ -23,6 +41,7 @@ const Search = () => {
       const response = await fetch(url);
       const data = await response.json();
       console.log(data);
+      const icon = weatherIcons[data.weather[0].icon];
       setWeatherData({
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
@@ -30,7 +49,7 @@ const Search = () => {
         city: data.name,
         country: data.sys.country,
         description: data.weather[0].description,
-        icon: data.weather[0].icon
+        icon: icon
       })
     }catch (error){
       
@@ -52,12 +71,14 @@ const Search = () => {
     setTriggerSearch(true);
     setShowSearch(true);
   };
+
+  console.log(weatherData?.icon);
   
   return (
     <div>
       <div className='search-field'>
         <input className='search-input' type='text' placeholder='Search' onChange={handleInputChange} value={city}/>
-        <img className='search-icon' src={searchSolid} alt="" onClick={handleSearch} />
+        <img className='search-icon' src={searchIcon} alt="" onClick={handleSearch} />
       </div>
       {showSearch && <DailyWeather 
         city={weatherData?.city} 
