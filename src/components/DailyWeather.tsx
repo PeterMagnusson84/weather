@@ -3,8 +3,6 @@ import "../styled/dailyWeather.css"
 import { TodayWeatherData } from "../interfaces/ITodayWeatherData";
 
 const DailyWeather = (props: TodayWeatherData) => {
-
-  console.log(props.icon);
   
   return (
     <div className='daily-container'>
