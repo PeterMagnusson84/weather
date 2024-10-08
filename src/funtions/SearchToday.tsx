@@ -25,7 +25,14 @@ export const searchToday = async (city: string, apiKey: string | undefined) => {
   const icon = weatherIcons[data.weather[0].icon];
   console.log(data);
   return {
+    sunrise: data.sys.sunrise,
+    sunset: data.sys.sunset,
+    feelslike: data.main.feels_like,
+    tempmax: data.main.temp_max,
+    tempmin: data.main.temp_min,
     humidity: data.main.humidity,
+    pressure: data.main.pressure,
+    visibility: data.visibility,
     windSpeed: data.wind.speed,
     temprature: Math.floor(data.main.temp),
     city: data.name,

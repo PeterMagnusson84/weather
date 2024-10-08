@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { TodayWeatherData } from "../interfaces/ITodayWeatherData";
+import { IWeatherData } from "../interfaces/IWeatherData";
 import "../styled/search.css";
 import DailyWeather from "./DailyWeather";
+import TodaysHighlight from "./TodaysHighlight";
 import searchIcon from "../icons/searchIcon.svg";
 import { searchToday } from "../funtions/SearchToday";
 
@@ -10,7 +11,7 @@ const Search = () => {
   const [city, setCity] = useState("");
   const [triggerSearch, setTriggerSearch] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [weatherData, setWeatherData] = useState<TodayWeatherData | null>(null);
+  const [weatherData, setWeatherData] = useState<IWeatherData | null>(null);
 
   const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -50,9 +51,18 @@ const Search = () => {
         city={weatherData?.city}
         country={weatherData?.country}
         description={weatherData?.description}
-        humidity={weatherData?.humidity}
         icon={weatherData?.icon}
         temprature={weatherData?.temprature}
+      />}
+      {showSearch && <TodaysHighlight 
+        sunrise={weatherData?.sunrise}
+        sunset={weatherData?.sunset}
+        feelslike={weatherData?.feelslike}
+        tempmax={weatherData?.tempmax}
+        tempmin={weatherData?.tempmin}
+        humidity={weatherData?.humidity}
+        pressure={weatherData?.pressure}
+        visibility={weatherData?.visibility}
         windSpeed={weatherData?.windSpeed}
       />}
     </div>

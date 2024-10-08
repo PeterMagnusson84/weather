@@ -1,11 +1,11 @@
 import React from 'react'
 import "../styled/dailyWeather.css"
-import { TodayWeatherData } from "../interfaces/ITodayWeatherData";
+import { ITodaysWeather } from "../interfaces/ITodaysWeather";
 import TodaysDate from "./TodaysDate";
 import loction from "../icons/location.svg";
 import calendar from "../icons/calendar.svg";
 
-const DailyWeather = (props: TodayWeatherData) => {
+const DailyWeather = (props: ITodaysWeather) => {
   
   return (
     <div className='daily-container'>

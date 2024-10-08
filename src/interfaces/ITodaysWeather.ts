@@ -1,6 +1,4 @@
-export interface TodayWeatherData {
-  humidity?: number;
-  windSpeed?: number;
+export interface ITodaysWeather {
   temprature?: number;
   city?: string;
   country?: string;
