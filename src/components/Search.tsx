@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { TodayWeatherData } from "../interfaces/ITodayWeatherData";
-import "../styled/dailyWeather.css";
+import "../styled/search.css";
 import DailyWeather from "./DailyWeather";
 import searchIcon from "../icons/searchIcon.svg";
-import { searchToday } from "./SearchToday";
+import { searchToday } from "../funtions/SearchToday";
 
 const Search = () => {
 
-  // const [count, setCount] = useState(0);
   const [city, setCity] = useState("");
   const [triggerSearch, setTriggerSearch] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -34,7 +33,17 @@ const Search = () => {
   return (
     <div>
       <div className='search-field'>
-        <input className='search-input' type='text' placeholder='Search' onChange={handleInputChange} value={city}/>
+        <input className='search-input' 
+        type='text' 
+        placeholder='Search' 
+        onChange={handleInputChange} 
+        value={city}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleSearch();
+          }
+        }}
+        />
         <img className='search-icon' src={searchIcon} alt="" onClick={handleSearch} />
       </div>
       {showSearch && <DailyWeather 

@@ -3,36 +3,65 @@
 }
 
 .daily-container {
-  height: 40vmin;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
+  padding-top: 70px;
 }
 
 .daily-content {
   background-color: rgb(31, 31, 31);
+  min-width: 300px;
   padding: 50px;
   border-radius: 45px;
+  color: white;
 }
 
-.search-field {
+.weather-temp-area {
   display: flex;
-  height: 25px;
-  gap: 12px;
-  cursor: pointer;
+  gap: 30px;
+  align-items: end;
+  padding-top: 20px;
 }
 
-.search-input {
-  background-color: black;
-    border-radius: 20px;
-    border: none;
-    color: white;
-    padding: 20px;
+.weather-temp {
+  font-size: 70px;
 }
 
-.search-icon {
-  margin-bottom: -12px;
-  padding-top: 5px;
+.weather-icon {
+  width: 70px;
+}
+
+.weather-line {
+  border-bottom: 2px solid rgb(160, 159, 159);
+  border-radius: 10px;
+}
+
+.weather-desc {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-transform: capitalize;
+}
+
+.weather-date-area {
+  display: flex;
+  gap: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.weather-location-area {
+  display: flex;
+  gap: 10px
+}
+
+.weather-location-icon {
+  width: 15px
+}
+
+.weather-location {
+  display: flex;
+  gap: 10px;
 }
 
 .daily-information {
