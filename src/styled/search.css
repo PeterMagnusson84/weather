@@ -17,3 +17,8 @@
   margin-bottom: -12px;
   padding-top: 5px;
 }
+
+.flex-type-boxes {
+  display: flex;
+  gap: 35px;
+}

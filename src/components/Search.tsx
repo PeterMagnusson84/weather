@@ -47,24 +47,26 @@ const Search = () => {
         />
         <img className='search-icon' src={searchIcon} alt="" onClick={handleSearch} />
       </div>
-      {showSearch && <DailyWeather 
-        city={weatherData?.city}
-        country={weatherData?.country}
-        description={weatherData?.description}
-        icon={weatherData?.icon}
-        temprature={weatherData?.temprature}
-      />}
-      {showSearch && <TodaysHighlight 
-        sunrise={weatherData?.sunrise}
-        sunset={weatherData?.sunset}
-        feelslike={weatherData?.feelslike}
-        tempmax={weatherData?.tempmax}
-        tempmin={weatherData?.tempmin}
-        humidity={weatherData?.humidity}
-        pressure={weatherData?.pressure}
-        visibility={weatherData?.visibility}
-        windSpeed={weatherData?.windSpeed}
-      />}
+      <div className='flex-type-boxes'>
+        {showSearch && <DailyWeather 
+          city={weatherData?.city}
+          country={weatherData?.country}
+          description={weatherData?.description}
+          icon={weatherData?.icon}
+          temprature={weatherData?.temprature}
+        />}
+        {showSearch && <TodaysHighlight 
+          sunrise={weatherData?.sunrise}
+          sunset={weatherData?.sunset}
+          feelslike={weatherData?.feelslike}
+          tempmax={weatherData?.tempmax}
+          tempmin={weatherData?.tempmin}
+          humidity={weatherData?.humidity}
+          pressure={weatherData?.pressure}
+          visibility={weatherData?.visibility}
+          windSpeed={weatherData?.windSpeed}
+        />}
+      </div>
     </div>
   )
 }

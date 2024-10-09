@@ -5,7 +5,6 @@
 .daily-container {
   display: flex;
   justify-content: flex-start;
-  width: 100%;
   padding-top: 70px;
 }
 
