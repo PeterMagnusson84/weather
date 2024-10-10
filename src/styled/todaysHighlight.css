@@ -1,7 +1,6 @@
 .highlight-container {
   display: flex;
   justify-content: flex-start;
-  padding-top: 70px;
 }
 
 .highlight-content {
@@ -9,6 +8,13 @@
   padding: 30px;
   border-radius: 45px;
   color: white;
+}
+
+.flex-highlight-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
 }
 
 .darkbox {
@@ -22,10 +28,20 @@
   margin-bottom: 20px;
 }
 
-.flex-highlight-boxes {
+.highlight-flex-wrap {
   display: flex;
-  gap: 20px;
-  margin: 20px;
+  flex-wrap: wrap;
+  gap: 35px
+}
+
+.highlight-flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.higlight-icon {
+  width: 50px;
 }
 
 .sunrise-time-container {

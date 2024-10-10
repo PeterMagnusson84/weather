@@ -4,6 +4,11 @@ import { ITodaysHighlights } from "../interfaces/ITodaysHighlights";
 import { ConvertToTime } from "../funtions/ConvertToTime";
 import sun from "../icons/sun.svg";
 import moon from "../icons/moon.svg";
+import feelslike from "../icons/tempfeels.svg";
+import humidity from "../icons/humidity.svg";
+import pressure from "../icons/pressure.svg";
+import visibilty from "../icons/eye.svg";
+import wind from "../icons/wind.svg";
 
 
 const TodaysHighlight = (props: ITodaysHighlights) => {
@@ -17,7 +22,7 @@ const TodaysHighlight = (props: ITodaysHighlights) => {
         <div className='flex-highlight-boxes'>
           <div className='darkbox'>
             <div className='highlight-title'>Soluppgång & Solnedgång</div>
-            <div style={{display: "flex", gap: "35px"}}>
+            <div className='highlight-flex-wrap'>
               <div className="sunrise-time-container">
                 <div className="sunrise-time-left"><div style={{width: "60px"}}><img src={sun} alt=''/></div></div>
                 <div className="sunrise-time-right">
@@ -26,7 +31,7 @@ const TodaysHighlight = (props: ITodaysHighlights) => {
                 </div>
               </div>
               <div className="sunrise-time-container">
-                <div className="sunrise-time-left"><div style={{width: "50px"}}><img src={moon} alt=''/></div></div>
+                <div className="sunrise-time-left"><div className='higlight-icon'><img src={moon} alt=''/></div></div>
                 <div className="sunrise-time-right">
                   <div className="sunrise-time-top-right">solnedgång</div>
                   <div className="sunrise-time-bottom-right">{sunsetTime}</div>
@@ -35,25 +40,60 @@ const TodaysHighlight = (props: ITodaysHighlights) => {
             </div>
           </div>
           <div className='darkbox'>
-            <div>feelslike:{props.feelslike}</div>
+            <div className='highlight-flex-column'>
+              <div className='highlight-title'>Känns som</div>
+              <div style={{display: "flex", gap: "15px"}}>
+                <div className='higlight-icon'><img src={feelslike} alt=''/></div>
+                <div style={{fontSize: "30px"}}>{props.feelslike}</div>
+              </div>
+            </div>
           </div>
           <div className='darkbox'>
-            <div>max temp:{props.tempmax}</div>
-            <div>min temp:{props.tempmin}</div>
+            <div className='highlight-flex-column'>
+              <div className='highlight-title'>Luftfuktighet</div>
+              <div style={{display: "flex", gap: "15px"}}>
+                <div className='higlight-icon'><img src={humidity} alt=''/></div>
+                <div style={{fontSize: "30px"}}>{props.humidity}</div>
+              </div>
+            </div>
           </div>
         </div>
         <div className='flex-highlight-boxes'>
           <div className='darkbox'>
-            <div>humidity:{props.humidity}</div>
+            <div className='highlight-flex-column'>
+              <div className='highlight-title'>Max / Min Temperatur</div>
+              <div style={{display: "flex", gap: "15px"}}>
+                <div className='higlight-icon'><img src={feelslike} alt=''/></div>
+                <div style={{fontSize: "30px"}}>{props.tempmax} / {props.tempmin}</div>
+              </div>
+            </div>
           </div>
           <div className='darkbox'>
-            <div>pressure:{props.pressure}</div>
+          <div className='highlight-flex-column'>
+              <div className='highlight-title'>Tryck</div>
+              <div style={{display: "flex", gap: "15px"}}>
+                <div className='higlight-icon'><img src={pressure} alt=''/></div>
+                <div style={{fontSize: "30px"}}>{props.pressure}</div>
+              </div>
+            </div>
           </div>
           <div className='darkbox'>
-            <div>visability:{props.visibility}</div>
+          <div className='highlight-flex-column'>
+              <div className='highlight-title'>Synlighet</div>
+              <div style={{display: "flex", gap: "15px"}}>
+                <div className='higlight-icon'><img src={visibilty} alt=''/></div>
+                <div style={{fontSize: "30px"}}>{props.visibility}</div>
+              </div>
+            </div>
           </div>
           <div className='darkbox'>
-            <div>wind speed:{props.windSpeed}</div>
+          <div className='highlight-flex-column'>
+              <div className='highlight-title'>Vind hastighet</div>
+              <div style={{display: "flex", gap: "15px"}}>
+                <div className='higlight-icon'><img src={wind} alt=''/></div>
+                <div style={{fontSize: "30px"}}>{props.windSpeed}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
