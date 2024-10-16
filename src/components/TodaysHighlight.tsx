@@ -2,6 +2,7 @@ import React from 'react'
 import "../styled/todaysHighlight.css"
 import { ITodaysHighlights } from "../interfaces/ITodaysHighlights";
 import { ConvertToTime } from "../funtions/ConvertToTime";
+import { TrimNumber } from "../funtions/TrimNumber";
 import sun from "../icons/sun.svg";
 import moon from "../icons/moon.svg";
 import feelslike from "../icons/tempfeels.svg";
@@ -15,6 +16,9 @@ const TodaysHighlight = (props: ITodaysHighlights) => {
 
   const sunriseTime = ConvertToTime(props.sunrise ?? 0);
   const sunsetTime = ConvertToTime(props.sunset ?? 0);
+  const tempFeelsLike = TrimNumber(props.feelslike ?? 0);
+  const tempMax = TrimNumber(props.tempmax ?? 0);
+  const tempMin = TrimNumber(props.tempmin ?? 0);
   
   return (
     <div className='highlight-container'>
@@ -33,7 +37,7 @@ const TodaysHighlight = (props: ITodaysHighlights) => {
               <div className="sunrise-time-container">
                 <div className="sunrise-time-left"><div className='higlight-icon'><img src={moon} alt=''/></div></div>
                 <div className="sunrise-time-right">
-                  <div className="sunrise-time-top-right">solnedgång</div>
+                  <div className="sunrise-time-top-right">Solnedgång</div>
                   <div className="sunrise-time-bottom-right">{sunsetTime}</div>
                 </div>
               </div>
@@ -44,33 +48,33 @@ const TodaysHighlight = (props: ITodaysHighlights) => {
               <div className='highlight-title'>Känns som</div>
               <div style={{display: "flex", gap: "15px"}}>
                 <div className='higlight-icon'><img src={feelslike} alt=''/></div>
-                <div style={{fontSize: "30px"}}>{props.feelslike}</div>
+                <div style={{fontSize: "30px"}}>{tempFeelsLike}<span>&deg;c</span></div>
               </div>
             </div>
           </div>
-          <div className='darkbox'>
-            <div className='highlight-flex-column'>
-              <div className='highlight-title'>Luftfuktighet</div>
-              <div style={{display: "flex", gap: "15px"}}>
-                <div className='higlight-icon'><img src={humidity} alt=''/></div>
-                <div style={{fontSize: "30px"}}>{props.humidity}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='flex-highlight-boxes'>
           <div className='darkbox'>
             <div className='highlight-flex-column'>
               <div className='highlight-title'>Max / Min Temperatur</div>
               <div style={{display: "flex", gap: "15px"}}>
                 <div className='higlight-icon'><img src={feelslike} alt=''/></div>
-                <div style={{fontSize: "30px"}}>{props.tempmax} / {props.tempmin}</div>
+                <div style={{fontSize: "30px"}}>{tempMax}<span>&deg;c</span> / {tempMin}<span>&deg;c</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='flex-highlight-boxes'>
+        <div className='darkbox'>
+            <div className='highlight-flex-column'>
+              <div className='highlight-title'>Luftfuktighet</div>
+              <div style={{display: "flex", gap: "15px"}}>
+                <div className='higlight-icon'><img src={humidity} alt=''/></div>
+                <div style={{fontSize: "30px"}}>{props.humidity}<span>%</span></div>
               </div>
             </div>
           </div>
           <div className='darkbox'>
           <div className='highlight-flex-column'>
-              <div className='highlight-title'>Tryck</div>
+              <div className='highlight-title'>Lufttryck</div>
               <div style={{display: "flex", gap: "15px"}}>
                 <div className='higlight-icon'><img src={pressure} alt=''/></div>
                 <div style={{fontSize: "30px"}}>{props.pressure}</div>
@@ -82,7 +86,7 @@ const TodaysHighlight = (props: ITodaysHighlights) => {
               <div className='highlight-title'>Synlighet</div>
               <div style={{display: "flex", gap: "15px"}}>
                 <div className='higlight-icon'><img src={visibilty} alt=''/></div>
-                <div style={{fontSize: "30px"}}>{props.visibility}</div>
+                <div style={{fontSize: "30px"}}>{props.visibility} meter</div>
               </div>
             </div>
           </div>
@@ -91,7 +95,7 @@ const TodaysHighlight = (props: ITodaysHighlights) => {
               <div className='highlight-title'>Vind hastighet</div>
               <div style={{display: "flex", gap: "15px"}}>
                 <div className='higlight-icon'><img src={wind} alt=''/></div>
-                <div style={{fontSize: "30px"}}>{props.windSpeed}</div>
+                <div style={{fontSize: "30px"}}>{props.windSpeed} m/s</div>
               </div>
             </div>
           </div>
