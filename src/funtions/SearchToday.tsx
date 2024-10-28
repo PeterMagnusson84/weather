@@ -19,8 +19,19 @@ const weatherIcons: { [key: string]: string } = {
 }
 
 export const searchToday = async (city: string, apiKey: string | undefined) => {
+  try {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&&lang=se&appid=${apiKey}`;
   const response = await fetch(url);
+
+  // Check if the response is not ok (i.e., status code is not in the 200-299 range)
+  if (!response.ok) {
+    // Handle different HTTP error codes, e.g., 404 for "city not found"
+    if (response.status === 404) {
+      throw new Error('City not found');
+    }
+    throw new Error('Failed to fetch weather data');
+  }
+
   const data = await response.json();
   const icon = weatherIcons[data.weather[0].icon];
   console.log(data);
@@ -40,4 +51,9 @@ export const searchToday = async (city: string, apiKey: string | undefined) => {
     description: data.weather[0].description,
     icon: icon,
   };
+} catch (error) {
+  // Log or handle the error appropriately in the UI
+  console.error('Error fetching weather data:', error);
+  return { error: error };
+}
 };

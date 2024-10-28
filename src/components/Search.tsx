@@ -11,13 +11,26 @@ const Search = () => {
   const [city, setCity] = useState("");
   const [triggerSearch, setTriggerSearch] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [noLocation, setNoLocation] = useState(false);
   const [weatherData, setWeatherData] = useState<IWeatherData | null>(null);
 
   const apiKey = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     if (triggerSearch && city !== "") {
-      searchToday(city, apiKey).then((data) => setWeatherData(data));
+      searchToday(city, apiKey).then((data) => {
+        setWeatherData(data);
+        // Check here if data is available, and set showSearch accordingly
+        if (!data.error) {
+          console.log("data");
+          setShowSearch(true);
+          setNoLocation(false);
+        } else {
+          console.log("no data");
+          setShowSearch(false);
+          setNoLocation(true);
+        }
+      });
       setTriggerSearch(false);
     }
   }, [triggerSearch, city]);
@@ -28,7 +41,6 @@ const Search = () => {
 
   const handleSearch = () => {
     setTriggerSearch(true);
-    setShowSearch(true);
   };
   
   return (
@@ -48,6 +60,7 @@ const Search = () => {
         <img className='search-icon' src={searchIcon} alt="" onClick={handleSearch} />
       </div>
       <div className='flex-type-boxes'>
+        {noLocation && <div>no location</div>} {/* TODO no location */}
         {showSearch && <DailyWeather 
           city={weatherData?.city}
           country={weatherData?.country}

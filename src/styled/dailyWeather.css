@@ -5,7 +5,7 @@
 .daily-container {
   display: flex;
   justify-content: flex-start;
-  max-height: 390px;
+  /* max-height: 390px; */
 }
 
 .daily-content {
