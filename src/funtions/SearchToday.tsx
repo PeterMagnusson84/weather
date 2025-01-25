@@ -22,6 +22,8 @@ export const searchToday = async (city: string, apiKey: string | undefined) => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&&lang=se&appid=${apiKey}`;
   const response = await fetch(url);
   const data = await response.json();
+
+  if(response.ok && data.weather && data.weather.length > 0) {
   const icon = weatherIcons[data.weather[0].icon];
   console.log(data);
   return {
@@ -40,4 +42,8 @@ export const searchToday = async (city: string, apiKey: string | undefined) => {
     description: data.weather[0].description,
     icon: icon,
   };
+}
+else {
+  throw new Error("City not found");
+}
 };

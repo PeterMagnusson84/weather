@@ -12,23 +12,32 @@ const Search = () => {
   const [triggerSearch, setTriggerSearch] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [weatherData, setWeatherData] = useState<IWeatherData | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const apiKey = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     if (triggerSearch && city !== "") {
-      searchToday(city, apiKey).then((data) => setWeatherData(data));
+      searchToday(city, apiKey).then((data) => { 
+        setWeatherData(data); 
+        setError(null)})
+        .catch((error) => {
+          setError(error.message); 
+          setWeatherData(null)
+        });
       setTriggerSearch(false);
     }
-  }, [triggerSearch, city]);
+  }, [triggerSearch, city, apiKey]);
 
   const handleInputChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setCity(e.target.value);
   };
 
   const handleSearch = () => {
-    setTriggerSearch(true);
-    setShowSearch(true);
+    if(city !== "") {
+      setTriggerSearch(true);
+      setShowSearch(true);
+    }
   };
   
   return (
@@ -45,9 +54,10 @@ const Search = () => {
           }
         }}
         />
+        {error && <p className="error">{error}</p>}
         <img className='search-icon' src={searchIcon} alt="" onClick={handleSearch} />
       </div>
-      <div className='flex-type-boxes'>
+      {weatherData && <div className='flex-type-boxes'>
         {showSearch && <DailyWeather 
           city={weatherData?.city}
           country={weatherData?.country}
@@ -66,7 +76,7 @@ const Search = () => {
           visibility={weatherData?.visibility}
           windSpeed={weatherData?.windSpeed}
         />}
-      </div>
+      </div>}
     </div>
   )
 }
