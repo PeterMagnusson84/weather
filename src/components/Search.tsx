@@ -5,7 +5,6 @@ import DailyWeather from "./DailyWeather";
 import TodaysHighlight from "./TodaysHighlight";
 import CityNotFound from './CityNotFound';
 import SearchInput from './SearchInput';
-import searchIcon from "../icons/searchIcon.svg";
 import { searchToday } from "../funtions/SearchToday";
 
 const Search = () => {
@@ -49,7 +48,6 @@ const Search = () => {
         handleInputChange={handleInputChange}
         handleSearch={handleSearch}
       />
-
       <div className='flex-type-boxes'>
         {error && <CityNotFound error={error} city={searchvalue}/>}
         {weatherData && <>

@@ -1,28 +1,22 @@
-import React from 'react';
 import searchIcon from "../icons/searchIcon.svg";
+import { ISearchInputProps } from '../interfaces/ISearchInputProps';
 
-interface SearchInputProps {
-  city: string;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSearch: () => void;
-}
-
-const SearchInput: React.FC<SearchInputProps> = ({ city, handleInputChange, handleSearch }) => {
+const SearchInput = (props: ISearchInputProps) => {
   return (
     <div className='search-field'>
       <input
         className='search-input'
         type='text'
         placeholder='Search'
-        onChange={handleInputChange}
-        value={city}
+        onChange={props.handleInputChange}
+        value={props.city}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-            handleSearch();
+            props.handleSearch();
           }
         }}
       />
-      <img className='search-icon' src={searchIcon} alt="" onClick={handleSearch} />
+      <img className='search-icon' src={searchIcon} alt="" onClick={props.handleSearch} />
     </div>
   );
 };
