@@ -3,14 +3,16 @@ import { IWeatherData } from "../interfaces/IWeatherData";
 import "../styled/search.css";
 import DailyWeather from "./DailyWeather";
 import TodaysHighlight from "./TodaysHighlight";
+import CityNotFound from './CityNotFound';
+import SearchInput from './SearchInput';
 import searchIcon from "../icons/searchIcon.svg";
 import { searchToday } from "../funtions/SearchToday";
 
 const Search = () => {
 
   const [city, setCity] = useState("");
+  const [searchvalue, setSearchValue] = useState<string>("");
   const [triggerSearch, setTriggerSearch] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
   const [weatherData, setWeatherData] = useState<IWeatherData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,7 +24,8 @@ const Search = () => {
         setWeatherData(data); 
         setError(null)})
         .catch((error) => {
-          setError(error.message); 
+          setError(error.message);
+          setSearchValue(city);
           setWeatherData(null)
         });
       setTriggerSearch(false);
@@ -36,36 +39,28 @@ const Search = () => {
   const handleSearch = () => {
     if(city !== "") {
       setTriggerSearch(true);
-      setShowSearch(true);
     }
   };
   
   return (
     <div>
-      <div className='search-field'>
-        <input className='search-input' 
-        type='text' 
-        placeholder='Search' 
-        onChange={handleInputChange} 
-        value={city}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            handleSearch();
-          }
-        }}
-        />
-        {error && <p className="error">{error}</p>}
-        <img className='search-icon' src={searchIcon} alt="" onClick={handleSearch} />
-      </div>
-      {weatherData && <div className='flex-type-boxes'>
-        {showSearch && <DailyWeather 
+      <SearchInput
+        city={city}
+        handleInputChange={handleInputChange}
+        handleSearch={handleSearch}
+      />
+
+      <div className='flex-type-boxes'>
+        {error && <CityNotFound error={error} city={searchvalue}/>}
+        {weatherData && <>
+        <DailyWeather 
           city={weatherData?.city}
           country={weatherData?.country}
           description={weatherData?.description}
           icon={weatherData?.icon}
           temprature={weatherData?.temprature}
-        />}
-        {showSearch && <TodaysHighlight 
+        />
+        <TodaysHighlight 
           sunrise={weatherData?.sunrise}
           sunset={weatherData?.sunset}
           feelslike={weatherData?.feelslike}
@@ -75,8 +70,9 @@ const Search = () => {
           pressure={weatherData?.pressure}
           visibility={weatherData?.visibility}
           windSpeed={weatherData?.windSpeed}
-        />}
-      </div>}
+        />
+        </>}
+      </div>
     </div>
   )
 }

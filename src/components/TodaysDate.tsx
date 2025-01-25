@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-const TodayDate: React.FC = () => {
+const TodayDate = () => {
   const [currentDate, setCurrentDate] = useState<string>('');
 
   useEffect(() => {
